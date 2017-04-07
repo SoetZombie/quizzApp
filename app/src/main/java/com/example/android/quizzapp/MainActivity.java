@@ -47,6 +47,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void restart(View view){
+        index = 1;
+        corrects= 0;
+        notCorrects = 0;
+        correctAnswers.clear();
+        setContentView(R.layout.activity_main);
+        questions = (TextView) findViewById(R.id.question);
+        answer1 = (Button) findViewById(R.id.answer1);
+        answer2 = (Button) findViewById(R.id.answer2);
+        answer3 = (Button) findViewById(R.id.answer3);
+        question.nextQuestion(index);
+        questions.setText(question.getQuestion());
+        answer1.setText(question.getAnswer1());
+        answer2.setText(question.getAnswer2());
+        answer3.setText(question.getAnswer3());
+
+
+
+
+
+    }
+
     public void setQuestion(View view) {
         question.nextQuestion(index);
         questions.setText(question.getQuestion());
@@ -55,25 +77,16 @@ public class MainActivity extends AppCompatActivity {
         answer3.setText(question.getAnswer3());
 
 
+
     }
 
     public void buttonAnswer1(View view) {
         if (getIndex() < 10) {
             question.setYourAnswer(question.getAnswer1());
-            if (question.yourAnswer.equals(question.correctAnswer)) {
-                corrects++;
 
-            } else {
-                notCorrects++;
-            }
             addToArrayList(view);
         } else {
-            if (question.yourAnswer.equals(question.correctAnswer)) {
-                corrects++;
-
-            } else {
-                notCorrects++;
-            }
+            question.setYourAnswer(question.getAnswer1());
             addToArrayList(view);
             score(view);
         }
@@ -84,24 +97,13 @@ public class MainActivity extends AppCompatActivity {
     public void buttonAnswer2(View view) {
         if (getIndex() < 10) {
             question.setYourAnswer(question.getAnswer2());
-            if (question.yourAnswer.equals(question.correctAnswer)) {
-                corrects++;
 
-            } else {
-                notCorrects++;
-            }
             addToArrayList(view);
         } else {
-            if (question.yourAnswer.equals(question.correctAnswer)) {
-                corrects++;
-
-            } else {
-                notCorrects++;
-            }
+            question.setYourAnswer(question.getAnswer2());
             addToArrayList(view);
             score(view);
         }
-
 
     }
 
@@ -109,20 +111,10 @@ public class MainActivity extends AppCompatActivity {
     public void buttonAnswer3(View view) {
         if (getIndex() < 10) {
             question.setYourAnswer(question.getAnswer3());
-            if (question.yourAnswer.equals(question.correctAnswer)) {
-                corrects++;
 
-            } else {
-                notCorrects++;
-            }
             addToArrayList(view);
         } else {
-            if (question.yourAnswer.equals(question.correctAnswer)) {
-                corrects++;
-
-            } else {
-                notCorrects++;
-            }
+            question.setYourAnswer(question.getAnswer3());
             addToArrayList(view);
             score(view);
         }
@@ -134,8 +126,10 @@ public class MainActivity extends AppCompatActivity {
         String answer;
         if (question.getYourAnswer().equals(question.getCorrectAnswer())) {
             answer = "Your answer was : " + question.getYourAnswer() + "\n " + "Correct answer was : " + question.getCorrectAnswer() + "✓ \n\n";
+            corrects++;
         } else {
             answer = "Your answer was : " + question.getYourAnswer() + "\n " + "Correct answer was : " + question.getCorrectAnswer() + "✘ \n\n";
+            notCorrects++;
         }
         correctAnswers.add(answer);
         index++;

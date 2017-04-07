@@ -26,11 +26,6 @@
         android:layout_marginBottom="100dp"
         android:textAlignment="center"
         />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pica"
-        android:onClick="test"/>
 
     <Button
         android:id="@+id/answer1"
@@ -66,4 +61,6 @@
         android:textSize="30sp"
         android:layout_alignParentBottom="true"
         android:onClick="buttonAnswer3"/>
+
+
 </RelativeLayout>
