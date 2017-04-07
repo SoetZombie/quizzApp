@@ -1,9 +1,12 @@
 package com.example.android.quizzapp;
 
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -14,21 +17,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    private Question question = new Question();
-    private TextView questions;
-    private Button answer1;
-    private Button answer2;
-    private Button answer3;
-
-
-    private TextView summary;
     int index = 1;
     int corrects;
     int notCorrects;
     ArrayList<String> correctAnswers = new ArrayList<>();
     View view;
-
-
+    private Question question = new Question();
+    private TextView questions;
+    private Button answer1;
+    private Button answer2;
+    private Button answer3;
+    private TextView summary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         answer1 = (Button) findViewById(R.id.answer1);
         answer2 = (Button) findViewById(R.id.answer2);
         answer3 = (Button) findViewById(R.id.answer3);
-      //  summary = (TextView) findViewById(R.id.summaryTextView);
+        //  summary = (TextView) findViewById(R.id.summaryTextView);
         question.nextQuestion(index);
         questions.setText(question.getQuestion());
         answer1.setText(question.getAnswer1());
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonAnswer1(View view) {
-        if(getIndex()<10) {
+        if (getIndex() < 10) {
             question.setYourAnswer(question.getAnswer1());
             if (question.yourAnswer.equals(question.correctAnswer)) {
                 corrects++;
@@ -68,17 +67,22 @@ public class MainActivity extends AppCompatActivity {
                 notCorrects++;
             }
             addToArrayList(view);
-        }
-        else{
+        } else {
+            if (question.yourAnswer.equals(question.correctAnswer)) {
+                corrects++;
+
+            } else {
+                notCorrects++;
+            }
             addToArrayList(view);
-            goToSummary(view);
+            score(view);
         }
 
     }
 
 
     public void buttonAnswer2(View view) {
-        if(getIndex()<10) {
+        if (getIndex() < 10) {
             question.setYourAnswer(question.getAnswer2());
             if (question.yourAnswer.equals(question.correctAnswer)) {
                 corrects++;
@@ -87,17 +91,23 @@ public class MainActivity extends AppCompatActivity {
                 notCorrects++;
             }
             addToArrayList(view);
-        }
-        else{
+        } else {
+            if (question.yourAnswer.equals(question.correctAnswer)) {
+                corrects++;
+
+            } else {
+                notCorrects++;
+            }
             addToArrayList(view);
-            goToSummary(view);
+            score(view);
         }
 
 
     }
 
+
     public void buttonAnswer3(View view) {
-        if(getIndex()<10) {
+        if (getIndex() < 10) {
             question.setYourAnswer(question.getAnswer3());
             if (question.yourAnswer.equals(question.correctAnswer)) {
                 corrects++;
@@ -106,22 +116,26 @@ public class MainActivity extends AppCompatActivity {
                 notCorrects++;
             }
             addToArrayList(view);
-        }
-        else{
-            addToArrayList(view);
-            goToSummary(view);
-        }
+        } else {
+            if (question.yourAnswer.equals(question.correctAnswer)) {
+                corrects++;
 
+            } else {
+                notCorrects++;
+            }
+            addToArrayList(view);
+            score(view);
+        }
 
 
     }
-    public void addToArrayList(View view){
+
+    public void addToArrayList(View view) {
         String answer;
-        if(question.getYourAnswer().equals(question.getCorrectAnswer())){
-            answer = "Your answer was : " + question.getYourAnswer()+"\n " + "Correct answer was : " + question.getCorrectAnswer()+"✓ \n\n" ;
-        }
-        else{
-            answer = "Your answer was : " + question.getYourAnswer()+"\n " + "Correct answer was : " + question.getCorrectAnswer()+"✘ \n\n";
+        if (question.getYourAnswer().equals(question.getCorrectAnswer())) {
+            answer = "Your answer was : " + question.getYourAnswer() + "\n " + "Correct answer was : " + question.getCorrectAnswer() + "✓ \n\n";
+        } else {
+            answer = "Your answer was : " + question.getYourAnswer() + "\n " + "Correct answer was : " + question.getCorrectAnswer() + "✘ \n\n";
         }
         correctAnswers.add(answer);
         index++;
@@ -129,13 +143,31 @@ public class MainActivity extends AppCompatActivity {
         setQuestion(view);
     }
 
-    public void goToSummary(View view){
-        setContentView(R.layout.summary);
-        TextView summary = (TextView) findViewById(R.id.summaryTextView) ;
-        summary.setText(printEverything());;
+    public void score(View view) {
+        int totalScore = getCorrects() + getNotCorrects();
+        setContentView(R.layout.score);
+        TextView score = (TextView) findViewById(R.id.yourScore);
+        ImageView scoreImg = (ImageView) findViewById(R.id.score);
+        score.setText(getCorrects() + "/" + totalScore);
+        if (corrects == 10) {
+            scoreImg.setImageResource(R.drawable.good);
+        } else if (corrects > 5) {
+            scoreImg.setImageResource(R.drawable.medium);
+        } else {
+            scoreImg.setImageResource(R.drawable.bad);
+        }
+
     }
 
-//    public void summary() {
+
+    public void goToSummary(View view) {
+        setContentView(R.layout.summary);
+        TextView summary = (TextView) findViewById(R.id.summaryTextView);
+        summary.setText(printEverything());
+        ;
+    }
+
+    //    public void summary() {
 //        questions.setText(correctAnswers.);
 //    }
 //    public void printAll(View view){
@@ -154,8 +186,17 @@ public class MainActivity extends AppCompatActivity {
     public View getView() {
         return view;
     }
-    public int getIndex(){
+
+    public int getIndex() {
         return index;
+    }
+
+    public int getCorrects() {
+        return corrects;
+    }
+
+    public int getNotCorrects() {
+        return notCorrects;
     }
 
 
