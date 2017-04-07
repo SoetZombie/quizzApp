@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public void buttonAnswer2(View view) {
         if (getIndex() < 10) {
             question.setYourAnswer(question.getAnswer2());
@@ -106,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
     public void buttonAnswer3(View view) {
         if (getIndex() < 10) {
@@ -153,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public void goToSummary(View view) {
         setContentView(R.layout.summary);
         TextView summary = (TextView) findViewById(R.id.summaryTextView);
@@ -161,12 +158,6 @@ public class MainActivity extends AppCompatActivity {
         ;
     }
 
-    //    public void summary() {
-//        questions.setText(correctAnswers.);
-//    }
-//    public void printAll(View view){
-//        questions.setText(printEverything());
-//    }
     public String printEverything() {
         String listString = "";
         for (String s : correctAnswers) {
@@ -174,11 +165,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return (listString);
-    }
-
-
-    public View getView() {
-        return view;
     }
 
     public int getIndex() {
