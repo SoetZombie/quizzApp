@@ -25,7 +25,7 @@
         android:textSize="50sp"
         android:id="@+id/yourScore"/>
     <Button
-    android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="View answers"
         android:id="@+id/viewAnswers"
@@ -33,12 +33,23 @@
         android:layout_alignParentRight="true"
         android:onClick="goToSummary"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="Start again"
         android:id="@+id/startAgain"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:onClick="restart"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start again"
+        android:gravity="center"
+        android:onClick="saveScore"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

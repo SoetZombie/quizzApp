@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> correctAnswers = new ArrayList<>();
     View view;
     private Question question = new Question();
+
     private TextView questions;
     private Button answer1;
     private Button answer2;
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.summary);
         TextView summary = (TextView) findViewById(R.id.summaryTextView);
         summary.setText(printEverything());
-        ;
+
     }
 
     public String printEverything() {
@@ -177,6 +178,10 @@ public class MainActivity extends AppCompatActivity {
 
     public int getNotCorrects() {
         return notCorrects;
+    }
+
+    public void saveScore(View view){
+        setContentView(R.layout.ladderboards);
     }
 
 
