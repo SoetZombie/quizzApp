@@ -37,6 +37,11 @@
         android:layout_above="@+id/answer2"
         android:layout_marginBottom="10dp"
         android:onClick="buttonAnswer1"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
 
 
         />
@@ -50,7 +55,12 @@
         android:textSize="30sp"
         android:layout_above="@+id/answer3"
         android:layout_marginBottom="10dp"
-        android:onClick="buttonAnswer2"/>
+        android:onClick="buttonAnswer2"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"/>
 
     <Button
         android:id="@+id/answer3"
@@ -60,7 +70,12 @@
         android:height="80dp"
         android:textSize="30sp"
         android:layout_alignParentBottom="true"
-        android:onClick="buttonAnswer3"/>
+        android:onClick="buttonAnswer3"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"/>
 
 
 </RelativeLayout>
